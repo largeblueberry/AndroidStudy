@@ -16,14 +16,35 @@ val num: Int = 10
 val pi: Double = 3.14
 val text: String = "Hello"
 val isTrue: Boolean = true
-private lateinit var tts: TextToSpeech
+
+val data1: Any = 10
+val data1: Any = "hello"
+val data2: Nothing = null
 ```
+- var: 변수 -> 값 변경 가능
+- val: 상수 -> 값 변경 불가능
+- Any: 모든 타입의 데이터 할당이 가능합니다.
+- Unit: Java의 void와 같다고 보면 됩니다.
+- Nothing: 오로지 null값만 대입할 수 있습니다.
+
+#### lateinit과 lazy
+```
+private lateinit var tts: TextToSpeech
+val lazyValue: String by lazy {
+    "Hello"
+}
+```
+- lateinit : kotlin에서는 변수 초기화를 나중에 한다고 선언이 가능합니다. 오로지 var만 가능합니다.
+- lazy :-> 이 경우 val이 주로 사용됨. var도 사용 가능
+    - 처음 사용될 때 자동으로 초기화
+    - 한 번만 초기화되고 그 이후로는 캐시된 값 사용
+    - 값 변경 불가
 
 ## 2. 함수 선언
 
 ### Java
 
-```java
+```
 public class Welcome {
     public static void main(String[] args) {
         System.out.println("Welcome to Java!");
@@ -35,7 +56,7 @@ public class Welcome {
 
 ### Kotlin
 
-```kotlin
+```
 fun main() {
     println("Hello, World!")
 }
@@ -47,7 +68,7 @@ fun main() {
 
 ### Java
 
-```java
+```
 if (a > 10) {
     System.out.println("큰 값입니다");
 } else {
@@ -55,7 +76,7 @@ if (a > 10) {
 }
 ```
 
-```java
+```
 for (int i = 0; i < 5; i++) {
     System.out.println(i);
 }
@@ -63,7 +84,7 @@ for (int i = 0; i < 5; i++) {
 
 ### Kotlin
 
-```kotlin
+```
 if (a > 10) {
     println("큰 값입니다")
 } else {
@@ -71,21 +92,20 @@ if (a > 10) {
 }
 ```
 
-```kotlin
+```
 for (i in 0 until 5) {
     println(i)
 }
 ```
 
-- Kotlin의 `until`은 **마지막 값을 포함하지 않음**
-- `downTo`, `step`을 활용할 수 있음 → `for (i in 10 downTo 1 step 2)`
+- Kotlin의 `until`은 **마지막 값을 포함하지 않음** -> 위의 거 출력하면, 01234만 출력됨.
 
 ## 4. 클래스 & 객체
 
 ### Java
 
-```java
-class Person {
+```
+class Person{
     String name;
     int age;
 
@@ -102,7 +122,7 @@ class Person {
 
 ### Kotlin
 
-```kotlin
+```
 class Person(val name: String, val age: Int) {
     fun introduce() {
         println("My name is $name and I am $age years old.")
@@ -116,7 +136,7 @@ class Person(val name: String, val age: Int) {
 
 ### Java
 
-```java
+```
 public class Main {
     public static void main(String[] args) {
         Person person = new Person("Alice", 25);
@@ -127,7 +147,7 @@ public class Main {
 
 ### Kotlin
 
-```kotlin
+```
 fun main() {
     val person = Person("Alice", 25)
     person.introduce()
@@ -141,14 +161,14 @@ fun main() {
 
 ### Java
 
-```java
+```
 String name = null;
 System.out.println(name.length()); // NullPointerException 발생 가능
 ```
 
 ### Kotlin
 
-```kotlin
+```
 var name: String? = null
 println(name?.length) // Null 안전 연산자 (?.) 사용 가능
 ```
@@ -157,44 +177,11 @@ println(name?.length) // Null 안전 연산자 (?.) 사용 가능
 - `!!` 연산자를 사용하면 **NullPointerException이 발생할 수도 있음** (`name!!.length`)
 - !!는 null이 확실히 아님을 알려주는 문법
 
-## 6. 람다식
+## 6. 배열
+### Java
 
-### Java (익명 클래스 사용)
 
-```java
-interface Greeting {
-    void sayHello();
-}
 
-public class Main {
-    public static void main(String[] args) {
-        Greeting greeting = new Greeting() {
-            @Override
-            public void sayHello() {
-                System.out.println("Hello!");
-            }
-        };
-        greeting.sayHello();
-    }
-}
-```
 
-### Kotlin (람다 표현식)
+### Kotlin
 
-```kotlin
-val greeting: () -> Unit = { println("Hello!") }
-greeting()
-```
-
-- Kotlin에서는 간단한 람다식으로 표현 가능
-
-## Java와 Kotlin 비교 요약
-
-| 비교 항목 | Java | Kotlin |
-| --- | --- | --- |
-| 변수 선언 | `int num = 10;` | `val num: Int = 10` |
-| 함수 선언 | `public int add(int a, int b)` | `fun add(a: Int, b: Int): Int` |
-| Null 안전성 | `null` 허용, NPE 가능 | `?` 타입 지정 (ex: `String?`) |
-| 클래스 | `class Person {}` | `class Person(val name: String)` |
-| 람다 표현식 | 익명 클래스 필요 | 간단한 `{}` 람다 표현식 사용 |
-| 확장 함수 | 제공되지 않음 | `fun String.greet()` 활용 가능 |
