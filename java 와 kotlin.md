@@ -43,7 +43,7 @@ fun main() {
 
 - Kotlin에서는 **`fun` 키워드**를 사용
 
-  ## 4. 조건문 & 반복문
+## 3. 조건문 & 반복문
 
 ### Java
 
@@ -80,7 +80,7 @@ for (i in 0 until 5) {
 - Kotlin의 `until`은 **마지막 값을 포함하지 않음**
 - `downTo`, `step`을 활용할 수 있음 → `for (i in 10 downTo 1 step 2)`
 
-## 5. 클래스 & 객체
+## 4. 클래스 & 객체
 
 ### Java
 
@@ -137,7 +137,7 @@ fun main() {
 - Kotlin에서는 `new` 키워드를 사용하지 않고 객체를 생성 가능
 - `main` 함수에서 간결하게 활용 가능
 
-## 6. Null 안전성
+## 5. Null 안전성
 
 ### Java
 
@@ -157,7 +157,7 @@ println(name?.length) // Null 안전 연산자 (?.) 사용 가능
 - `!!` 연산자를 사용하면 **NullPointerException이 발생할 수도 있음** (`name!!.length`)
 - !!는 null이 확실히 아님을 알려주는 문법
 
-## 7. 람다식
+## 6. 람다식
 
 ### Java (익명 클래스 사용)
 
@@ -188,31 +188,7 @@ greeting()
 
 - Kotlin에서는 간단한 람다식으로 표현 가능
 
-## 8. 확장 함수
-
-### Java (기본적으로 제공되지 않음)
-
-```java
-public class Utils {
-    public static String greet(String name) {
-        return "Hello, " + name;
-    }
-}
-```
-
-### Kotlin
-
-```kotlin
-fun String.greet(): String {
-    return "Hello, $this"
-}
-
-println("Alice".greet()) // Hello, Alice
-```
-
-- Kotlin에서는 **확장 함수**를 사용하여 기존 클래스에 함수를 추가할 수 있음
-
-  ## Java와 Kotlin 비교 요약
+## Java와 Kotlin 비교 요약
 
 | 비교 항목 | Java | Kotlin |
 | --- | --- | --- |
